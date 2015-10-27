@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "heroku open"
+    "start": "npm ./bin/www"
   },
   "description": "Base de datos empresas prácticas",
   "author": {
