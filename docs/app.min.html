@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>app.min.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="Gruntfile.html">
+                  Gruntfile.js
+                </a>
+              
+                
+                <a class="source" href="app.html">
+                  app.js
+                </a>
+              
+                
+                <a class="source" href="app.min.html">
+                  app.min.js
+                </a>
+              
+                
+                <a class="source" href="config.html">
+                  config.js
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>app.min.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> DocumentDBClient=<span class="hljs-built_in">require</span>(<span class="hljs-string">"documentdb"</span>).DocumentClient,config=<span class="hljs-built_in">require</span>(<span class="hljs-string">"./config"</span>),TaskList=<span class="hljs-built_in">require</span>(<span class="hljs-string">"./routes/tasklist"</span>),TaskDao=<span class="hljs-built_in">require</span>(<span class="hljs-string">"./models/taskDao"</span>),express=<span class="hljs-built_in">require</span>(<span class="hljs-string">"express"</span>),path=<span class="hljs-built_in">require</span>(<span class="hljs-string">"path"</span>),favicon=<span class="hljs-built_in">require</span>(<span class="hljs-string">"serve-favicon"</span>),logger=<span class="hljs-built_in">require</span>(<span class="hljs-string">"morgan"</span>),cookieParser=<span class="hljs-built_in">require</span>(<span class="hljs-string">"cookie-parser"</span>),bodyParser=<span class="hljs-built_in">require</span>(<span class="hljs-string">"body-parser"</span>),routes=<span class="hljs-built_in">require</span>(<span class="hljs-string">"./routes/index"</span>),users=<span class="hljs-built_in">require</span>(<span class="hljs-string">"./routes/users"</span>),app=express();app.set(<span class="hljs-string">"views"</span>,path.join(__dirname,<span class="hljs-string">"views"</span>)),app.set(<span class="hljs-string">"view engine"</span>,<span class="hljs-string">"jade"</span>),app.use(logger(<span class="hljs-string">"dev"</span>)),app.use(bodyParser.json()),app.use(bodyParser.urlencoded({extended:!<span class="hljs-number">1</span>})),app.use(cookieParser()),app.use(express[<span class="hljs-string">"static"</span>](path.join(__dirname,<span class="hljs-string">"public"</span>)));<span class="hljs-keyword">var</span> docDbClient=<span class="hljs-keyword">new</span> DocumentDBClient(config.host,{masterKey:config.authKey}),taskDao=<span class="hljs-keyword">new</span> TaskDao(docDbClient,config.databaseId,config.collectionId),taskList=<span class="hljs-keyword">new</span> TaskList(taskDao);taskDao.init(),app.get(<span class="hljs-string">"/"</span>,taskList.showTasks.bind(taskList)),app.post(<span class="hljs-string">"/addtask"</span>,taskList.addTask.bind(taskList)),app.post(<span class="hljs-string">"/completetask"</span>,taskList.completeTask.bind(taskList)),app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a,b,c</span>)</span>{<span class="hljs-keyword">var</span> d=<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Not Found"</span>);d.status=<span class="hljs-number">404</span>,c(d)}),<span class="hljs-string">"development"</span>===app.get(<span class="hljs-string">"env"</span>)&amp;&amp;app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a,b,c,d</span>)</span>{c.status(a.status||<span class="hljs-number">500</span>),c.render(<span class="hljs-string">"error"</span>,{message:a.message,error:a})}),app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a,b,c,d</span>)</span>{c.status(a.status||<span class="hljs-number">500</span>),c.render(<span class="hljs-string">"error"</span>,{message:a.message,error:{}})}),<span class="hljs-built_in">module</span>.exports=app;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
